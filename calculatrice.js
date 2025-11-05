@@ -1,7 +1,11 @@
+
 let display = document.querySelector('.display');
 let operatorButtons = document.querySelectorAll('.operator');
 
 const isOperator = (ch) => ['+', '-', '*', '/'].includes(ch);
+
+const buttons = document.querySelectorAll('[data-number]');
+let currentDisplay = '0';
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -21,5 +25,24 @@ operatorButtons.forEach(button => {
         } else {
             display.innerHTML = trimmed + op;
         }
+    });
+});
+
+
+// Ajouter un écouteur d'événement à chaque bouton numérique
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        const number = button.getAttribute('data-number');
+        
+        // Si 0, remplacer par le nouveau chiffre
+        // Sinon, mettre le chiffre à la suite
+        if (currentDisplay === '0') {
+            currentDisplay = number;
+        } else {
+            currentDisplay += number;
+        }
+
+        // MAJ de l'affichage
+        display.innerHTML = currentDisplay;
     });
 });
