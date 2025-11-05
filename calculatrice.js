@@ -147,3 +147,25 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+
+// Support clavier : opérateurs (+ - * /) via clavier principal ou pavé numérique
+document.addEventListener('keydown', (e) => {
+    const k = e.key;
+    const code = e.code;
+    let op = null;
+
+    if (k === '+' || k === 'Add' || code === 'NumpadAdd') op = '+';
+    else if (k === '-' || k === 'Subtract' || code === 'NumpadSubtract') op = '-';
+    else if (k === '*' || k === 'Multiply' || code === 'NumpadMultiply') op = '*';
+    else if (k === '/' || k === 'Divide' || code === 'NumpadDivide') op = '/';
+
+    if (op) {
+        // Trouver le bouton opérateur correspondant et déclencher son click
+        const btn = Array.from(operatorButtons).find(b => b.getAttribute('data-operator') === op);
+        if (btn) {
+            btn.click();
+            e.preventDefault();
+        }
+    }
+});
+
