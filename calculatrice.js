@@ -10,9 +10,24 @@ const isOperator = (ch) => ['+', '-', '*', '/'].includes(ch);
 const buttons = document.querySelectorAll('[data-number]');
 let currentDisplay = '0';
 
+let number1 = '';
+let operator = '';
+let number2 = '';
+
+let isFirstInput = true;
+
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
         operator = button.getAttribute('data-operator');
+
+        if (isFirstInput) {
+            number1 = currentDisplay;
+            isFirstInput = false;
+        } else {
+            number2 = currentDisplay;
+        }
+
+        operator = op;
 
         const current = String(display.innerHTML);
         const trimmed = current.trim();
