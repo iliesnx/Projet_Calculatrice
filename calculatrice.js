@@ -1,5 +1,9 @@
+let number1 = "";
+let number2 = "";
+let operator = "";
 let display = document.querySelector('.display');
 let operatorButtons = document.querySelectorAll('.operator');
+let clearButton = document.querySelector('.clear');
 
 const isOperator = (ch) => ['+', '-', '*', '/'].includes(ch);
 
@@ -14,7 +18,7 @@ let isFirstInput = true;
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
-        const op = button.getAttribute('data-operator');
+        operator = button.getAttribute('data-operator');
 
         if (isFirstInput) {
             number1 = currentDisplay;
@@ -59,4 +63,12 @@ buttons.forEach(button => {
         // MAJ de l'affichage
         display.innerHTML = currentDisplay;
     });
+});
+
+clearButton.addEventListener('click', () => {
+    currentDisplay = '0';
+    number1 = "";
+    number2 = "";
+    operator = "";
+    display.innerHTML = currentDisplay;
 });
