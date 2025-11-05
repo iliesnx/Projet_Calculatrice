@@ -10,7 +10,6 @@ const isOperator = (ch) => ['+', '-', '*', '/'].includes(ch);
 const buttons = document.querySelectorAll('[data-number]');
 let currentDisplay = '0';
 
-
 let isFirstInput = true;
 
 operatorButtons.forEach(button => {
