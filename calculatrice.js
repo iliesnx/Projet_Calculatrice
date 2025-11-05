@@ -4,6 +4,7 @@ let operator = "";
 let display = document.querySelector('.display');
 let operatorButtons = document.querySelectorAll('.operator');
 let clearButton = document.querySelector('.clear');
+let resultButton = document.querySelector('.equals');
 
 const isOperator = (ch) => ['+', '-', '*', '/'].includes(ch);
 
@@ -99,5 +100,35 @@ document.addEventListener('keydown', (e) => {
         number2 = "";
         operator = "";
         display.innerHTML = currentDisplay;
+    }
+});
+
+resultButton.addEventListener('click', () => {
+    if (number1 !== "" && operator !== "" && number2 !== "") {
+        let result;
+        const num1 = parseFloat(number1);
+        const num2 = parseFloat(number2);
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;  
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                result = num2 !== 0 ? num1 / num2 : 'Error';
+                break;
+            default:
+                return;
+        }   
+        display.innerHTML = String(result);
+        currentDisplay = String(result);
+        number1 = String(result);
+        number2 = "";
+        operator = "";
+        isFirstInput = true;
     }
 });
