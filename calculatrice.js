@@ -72,3 +72,14 @@ clearButton.addEventListener('click', () => {
     operator = "";
     display.innerHTML = currentDisplay;
 });
+
+document.addEventListener('keydown', (e) => {
+    const key = String(e.key);
+    if (key === 'Escape' || key.toLowerCase() === 'c') {
+        currentDisplay = '0';
+        number1 = "";
+        number2 = "";
+        operator = "";
+        display.innerHTML = currentDisplay;
+    }
+});
